@@ -12,5 +12,5 @@ public interface Constants {
 	
 	ContentType CONTENT_TYPE = JSON;
 	
-	Long MAX_TIMEOUT = 8000L;
+	Long MAX_TIMEOUT = 15000L;
 }
