@@ -47,7 +47,7 @@ public class ApiTest extends BaseTest{
 	public void shouldInsertAccount() {		
 		given()
 			.header("Authorization", "JWT " + TOKEN)
-			.body("{\"nome\": \"Conta básica\"}")
+			.body("{\"nome\": \"Conta bÃ¡sica\"}")
 		.when()
 			.post("/contas")
 		.then()
@@ -63,7 +63,7 @@ public class ApiTest extends BaseTest{
 			.post("/contas")
 		.then()
 			.statusCode(400)
-			.body("error", is("Já existe uma conta com esse nome!"));
+			.body("error", is("JÃ¡ existe uma conta com esse nome!"));
 	}
 	
 	@Disabled
@@ -103,14 +103,14 @@ public class ApiTest extends BaseTest{
 			.statusCode(400)
 			.body("$", hasSize(8))
 			.body("msg", hasItems(
-					"Data da Movimentação é obrigatório",
-					"Data do pagamento é obrigatório",
-					"Descrição é obrigatório",
-					"Interessado é obrigatório",
-					"Valor é obrigatório",
-					"Valor deve ser um número",
-					"Conta é obrigatório",
-					"Situação é obrigatório"));
+					"Data da MovimentaÃ§Ã£o Ã© obrigatÃ³rio",
+					"Data do pagamento Ã© obrigatÃ³rio",
+					"DescriÃ§Ã£o Ã© obrigatÃ³rio",
+					"Interessado Ã© obrigatÃ³rio",
+					"Valor Ã© obrigatÃ³rio",
+					"Valor deve ser um nÃºmero",
+					"Conta Ã© obrigatÃ³rio",
+					"SituaÃ§Ã£o Ã© obrigatÃ³rio"));
 	}
 	
 	@Test
@@ -126,7 +126,7 @@ public class ApiTest extends BaseTest{
 		.then()
 			.statusCode(400)
 			.body("$", hasSize(1))
-			.body("msg", hasItems("Data da Movimentação deve ser menor ou igual à data atual"));
+			.body("msg", hasItems("Data da MovimentaÃ§Ã£o deve ser menor ou igual Ã  data atual"));
 	}
 	
 	@Test
@@ -165,7 +165,7 @@ public class ApiTest extends BaseTest{
 		Movement movement = new Movement();
 				
 		movement.setConta_id(1477846);
-		movement.setDescricao("Teste inserção movimentação");
+		movement.setDescricao("Teste inserÃ§Ã£o movimentaÃ§Ã£o");
 		movement.setEnvolvido("Env mov");
 		movement.setTipo("REC");
 		movement.setData_transacao("13/11/2022");
