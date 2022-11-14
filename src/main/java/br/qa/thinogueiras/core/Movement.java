@@ -91,5 +91,5 @@ public class Movement {
 	
 	public void setUsuario_id(Integer usuario_id) {
 		this.usuario_id = usuario_id;
-	}	
+	}
 }
