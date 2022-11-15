@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import br.qa.thinogueiras.core.BaseTest;
@@ -46,18 +47,19 @@ public class ApiTest extends BaseTest{
 	public void shouldInsertAccount() {		
 		given()
 			.header("Authorization", "JWT " + TOKEN)
-			.body("{\"nome\": \"Conta básica\"}")
+			.body("{\"nome\": \"Conta corrente\"}")
 		.when()
 			.post("/contas")
 		.then()
 			.statusCode(201);
 	}
 	
+	@Disabled
 	@Test
 	public void shouldEditAccount() {
 		given()			
 			.header("Authorization", "JWT " + TOKEN)
-			.body("{\"nome\": \"Conta alterada\"}")
+			.body("{\"nome\": \"Conta salário\"}")
 		.when()
 			.put("/contas/1477462")
 		.then()
@@ -69,7 +71,7 @@ public class ApiTest extends BaseTest{
 	public void shouldNotInsertAccountWithSameName() {
 		given()			
 			.header("Authorization", "JWT " + TOKEN)
-			.body("{\"nome\": \"Conta b�sica\"}")
+			.body("{\"nome\": \"Conta corrente\"}")
 		.when()
 			.post("/contas")
 		.then()
@@ -82,7 +84,7 @@ public class ApiTest extends BaseTest{
 		Movement movement = new Movement();
 		
 		movement.setConta_id(1477481);
-		movement.setDescricao("Teste inser��o movimenta��o");
+		movement.setDescricao("Teste de inserção de movimentação");
 		movement.setEnvolvido("Env mov");
 		movement.setTipo("REC");
 		movement.setData_transacao("02/01/2022");
@@ -117,7 +119,7 @@ public class ApiTest extends BaseTest{
 					"Valor é obrigatório",
 					"Valor deve ser um número",
 					"Conta é obrigatório",
-					"Situação é obrigatório"));
+					"Situaçãoo é obrigatório"));
 	}
 	
 	@Test
@@ -133,7 +135,7 @@ public class ApiTest extends BaseTest{
 		.then()
 			.statusCode(400)
 			.body("$", hasSize(1))
-			.body("msg", hasItems("Data da Movimentação deve ser menor ou igual à data atual"));
+			.body("msg", hasItems("Data da Movimentaçãoo deve ser menor ou igual à data atual"));
 	}
 	
 	@Test
@@ -172,7 +174,7 @@ public class ApiTest extends BaseTest{
 		Movement movement = new Movement();
 				
 		movement.setConta_id(1477846);
-		movement.setDescricao("Teste inserção movimentação");
+		movement.setDescricao("Teste de inserção de movimentação");
 		movement.setEnvolvido("Env mov");
 		movement.setTipo("REC");
 		movement.setData_transacao("13/11/2022");
