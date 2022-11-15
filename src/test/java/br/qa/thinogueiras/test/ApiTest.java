@@ -119,4 +119,67 @@ public class ApiTest extends BaseTest{
 					"Conta é obrigatório",
 					"Situação é obrigatório"));
 	}
+	
+	@Test
+	public void ShouldNotRegisterMovementWithFutureDate() {
+		Movement movement = getValidMovement();		
+		movement.setData_transacao("13/11/2027");
+		
+		given()			
+			.header("Authorization", "JWT " + TOKEN)
+			.body(movement)
+		.when()
+			.post("/transacoes")
+		.then()
+			.statusCode(400)
+			.body("$", hasSize(1))
+			.body("msg", hasItems("Data da Movimentação deve ser menor ou igual à data atual"));
+	}
+	
+	@Test
+	public void shouldNotRemoveAccountWithMovement() {
+		given()			
+			.header("Authorization", "JWT " + TOKEN)			
+		.when()
+			.delete("/contas/1477834")
+		.then()
+			.statusCode(500)
+			.body("constraint", is("transacoes_conta_id_foreign"));
+	}
+	
+	@Test
+	public void shouldCalculateTheAccountBalance() {
+		given()			
+			.header("Authorization", "JWT " + TOKEN)			
+		.when()
+			.get("/saldo")
+		.then()
+			.statusCode(200)
+			.body("find{it.conta_id==1477848}.saldo", is("534.00"));			
+	}
+	
+	@Test
+	public void shouldRemoveAccountMovement() {
+		given()			
+			.header("Authorization", "JWT " + TOKEN)			
+		.when()
+			.delete("/transacoes/1380766")
+		.then()
+			.statusCode(204);			
+	}
+	
+	private Movement getValidMovement() {
+		Movement movement = new Movement();
+				
+		movement.setConta_id(1477846);
+		movement.setDescricao("Teste inserção movimentação");
+		movement.setEnvolvido("Env mov");
+		movement.setTipo("REC");
+		movement.setData_transacao("13/11/2022");
+		movement.setData_pagamento("15/11/2026");
+		movement.setValor(5000f);
+		movement.setStatus(true);
+		
+		return movement;
+	}
 }
