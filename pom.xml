@@ -5,17 +5,20 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<properties>
-		<java.version>11</java.version>
-		<maven.compiler.target>11</maven.compiler.target>
-		<maven.compiler.source>11</maven.compiler.source>
+		<java.version>17</java.version>
+		<maven.compiler.target>17</maven.compiler.target>
+		<maven.compiler.source>17</maven.compiler.source>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<project.encoding>UTF-8</project.encoding>
-		<rest-assured.version>5.1.1</rest-assured.version>
+		<rest-assured.version>5.2.0</rest-assured.version>
 		<json-schema-validator.version>5.1.1</json-schema-validator.version>
 		<com.google.code.gson.version>2.9.1</com.google.code.gson.version>
-		<junit.jupiter.version>5.9.0</junit.jupiter.version>
-		<junit-jupiter-engine.version>5.9.0</junit-jupiter-engine.version>
+		<junit.jupiter.version>5.9.1</junit.jupiter.version>
+		<junit-jupiter-engine.version>5.9.1</junit-jupiter-engine.version>
+		<junit-jupiter.version>5.9.1</junit-jupiter.version>
+		<junit-vintage-engine.version>5.9.1</junit-vintage-engine.version>
+		<junit-platform-suite-engine.version>1.8.2</junit-platform-suite-engine.version>
 		<allure-rest-assured.version>2.19.0</allure-rest-assured.version>
 		<allure.junit5.version>2.19.0</allure.junit5.version>
 		<allure.junit.platform.version>2.19.0</allure.junit.platform.version>
@@ -23,6 +26,7 @@
 		<maven-surefire-plugin.version>3.0.0-M5</maven-surefire-plugin.version>
 		<maven-compiler-plugin.version>3.10.1</maven-compiler-plugin.version>
 		<aspectj.version>1.9.6</aspectj.version>
+		<slf4j.version>1.7.5</slf4j.version>
 	</properties>
 
 	<dependencies>
@@ -52,9 +56,19 @@
 			<version>${junit-jupiter-engine.version}</version>
 		</dependency>
 		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>${junit-jupiter.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.vintage</groupId>
+			<artifactId>junit-vintage-engine</artifactId>
+			<version>${junit-vintage-engine.version}</version>
+		</dependency>
+		<dependency>
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-suite-engine</artifactId>
-			<version>1.9.1</version>
+			<version>${junit-platform-suite-engine.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
@@ -62,6 +76,89 @@
 			<artifactId>allure-rest-assured</artifactId>
 			<version>${allure-rest-assured.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>io.qameta.allure</groupId>
+			<artifactId>allure-junit5</artifactId>
+			<version>${allure.junit5.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-api</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.slf4j</groupId>
+			<artifactId>slf4j-log4j12</artifactId>
+			<version>${slf4j.version}</version>
+		</dependency>
 	</dependencies>
 
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>${maven-compiler-plugin.version}</version>
+				<configuration>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<testFailureIgnore>false</testFailureIgnore>
+					<properties>
+						<property>
+							<name>listener</name>
+							<value>io.qameta.allure.junit5.AllureJunit5</value>
+						</property>
+					</properties>
+					<includes>
+						<include>br.qa.thinogueiras.suite/**Test.java</include>
+					</includes>
+					<threadCount>5</threadCount>
+					<parallel>All</parallel>
+					<argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
+					<systemProperties>
+						<property>
+							<name>allure.results.directory</name>
+							<value>${project.basedir}/allure-results</value>
+						</property>
+						<property>
+							<name>junit.jupiter.extensions.autodetection.enabled</name>
+							<value>true</value>
+						</property>
+					</systemProperties>
+					<reportFormat>plain</reportFormat>
+				</configuration>
+				<dependencies>
+					<dependency>
+						<groupId>org.aspectj</groupId>
+						<artifactId>aspectjweaver</artifactId>
+						<version>${aspectj.version}</version>
+					</dependency>
+					<dependency>
+						<groupId>org.junit.jupiter</groupId>
+						<artifactId>junit-jupiter-engine</artifactId>
+						<version>${junit.jupiter.version}</version>
+					</dependency>
+				</dependencies>
+			</plugin>
+			<plugin>
+				<groupId>io.qameta.allure</groupId>
+				<artifactId>allure-rest-assured</artifactId>
+				<version>${allure-rest-assured.version}</version>
+			</plugin>
+			<plugin>
+				<groupId>io.qameta.allure</groupId>
+				<artifactId>allure-maven</artifactId>
+				<version>${allure-maven.version}</version>
+			</plugin>
+		</plugins>
+	</build>
 </project>
