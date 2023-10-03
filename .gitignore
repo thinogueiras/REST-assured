@@ -6,7 +6,7 @@ allure*
 .classpath
 .project
 .settings
-.springBeans
+.vscode
 .idea
 classes/
 lib/
