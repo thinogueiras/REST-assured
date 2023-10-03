@@ -7,8 +7,10 @@ import static org.hamcrest.CoreMatchers.is;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import br.qa.thinogueiras.core.BaseTest;
+
 @DisplayName("Balance Tests")
-public class BalanceTest {
+public class BalanceTest extends BaseTest {
 	
 	@Test
 	public void shouldCalculateTheAccountBalance() {

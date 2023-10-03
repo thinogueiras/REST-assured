@@ -11,10 +11,11 @@ import br.qa.thinogueiras.tests.MovementTest;
 
 @Suite
 @SuiteDisplayName("API Tests - Barriga REST")
-@SelectClasses({ AccountTest.class, 
-	MovementTest.class, 
+@SelectClasses({ 
+	AuthTest.class,
+	AccountTest.class, 
 	BalanceTest.class,
-	AuthTest.class })
+	MovementTest.class }) 
 public class SuiteTest {	
 	
 }

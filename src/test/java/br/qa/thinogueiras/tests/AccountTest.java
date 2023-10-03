@@ -10,7 +10,7 @@ import org.junit.jupiter.api.Test;
 import br.qa.thinogueiras.core.BaseTest;
 
 @DisplayName("Account Tests")
-public class AccountTest extends BaseTest {	
+public class AccountTest extends BaseTest {
 	
 	@Test
 	public void shouldInsertAccount() {		

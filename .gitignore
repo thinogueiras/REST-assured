@@ -1,5 +1,12 @@
+target
+allure*
+*.iws
+*.ipr
+*.iml
 .classpath
 .project
-.settings/**
-target/**
-/target/
+.settings
+.springBeans
+.idea
+classes/
+lib/

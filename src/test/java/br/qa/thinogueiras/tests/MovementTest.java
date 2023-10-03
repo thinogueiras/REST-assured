@@ -11,10 +11,11 @@ import static org.hamcrest.Matchers.hasSize;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import br.qa.thinogueiras.core.BaseTest;
 import br.qa.thinogueiras.core.Movement;
 
 @DisplayName("Movement Tests")
-public class MovementTest {
+public class MovementTest extends BaseTest {	
 	
 	@Test
 	public void shouldInsertAccountMovement() {

@@ -1,17 +1,14 @@
 package br.qa.thinogueiras.core;
 
+import static br.qa.thinogueiras.core.TokenFactory.getToken;
 import static io.restassured.RestAssured.basePath;
 import static io.restassured.RestAssured.baseURI;
 import static io.restassured.RestAssured.enableLoggingOfRequestAndResponseIfValidationFails;
 import static io.restassured.RestAssured.get;
-import static io.restassured.RestAssured.given;
 import static io.restassured.RestAssured.port;
 import static io.restassured.RestAssured.requestSpecification;
 import static io.restassured.RestAssured.responseSpecification;
 import static org.hamcrest.Matchers.lessThan;
-
-import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.jupiter.api.BeforeAll;
 
@@ -34,21 +31,9 @@ public class BaseTest implements Constants {
 		responseSpecBuilder.expectResponseTime(lessThan(MAX_TIMEOUT));
 		responseSpecification = responseSpecBuilder.build();
 		
-		enableLoggingOfRequestAndResponseIfValidationFails();			
-	
-		Map<String, String> login = new HashMap<>();
-		login.put("email", "thinogueiras@testing.com");
-		login.put("senha", "test123");
-
-		String TOKEN = given()
-			.body(login)
-		.when()
-			.post("/signin")
-		.then()
-			.statusCode(200)
-			.extract().path("token");
+		enableLoggingOfRequestAndResponseIfValidationFails();
 		
-		requestSpecification.header("Authorization", "JWT " + TOKEN);
+		getToken();
 		
 		get("/reset").then().statusCode(200);
 	}
