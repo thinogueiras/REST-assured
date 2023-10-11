@@ -1,12 +1,8 @@
+.allure
+allure-results
 target
-allure*
-*.iws
-*.ipr
-*.iml
 .classpath
 .project
 .settings
 .vscode
 .idea
-classes/
-lib/

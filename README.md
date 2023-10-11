@@ -16,7 +16,7 @@ mvn clean test
 allure serve allure-results
 ```
 
-![Alt text](/images/allure.png)
+![Alt text](/images/allure-report.png)
 
 ---
 
