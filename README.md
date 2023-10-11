@@ -1,8 +1,22 @@
-# Testes de API com REST-assured 5.2.0 e JUnit 5.10.0.
+# Testes de API com REST-assured e JUnit 5.
 
 ## Pré-requisitos de ambiente 📋 💻
 
 [Java](https://www.oracle.com/br/java/technologies/downloads/#java11) 11.0.20.
+
+## Execução dos testes pelo CMD ✅ ✅
+
+``` 
+mvn clean test
+```
+
+## Relatório da execução 📝 📄
+
+```
+allure serve allure-results
+```
+
+![Alt text](/images/allure.png)
 
 ---
 
