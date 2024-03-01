@@ -1,6 +1,4 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>br.qa.thinogueiras</groupId>
 	<artifactId>REST-assured</artifactId>
@@ -18,7 +16,7 @@
 		<junit.jupiter.engine.version>5.10.0</junit.jupiter.engine.version>
 		<json-schema-validator.version>5.1.1</json-schema-validator.version>
 		<com.google.code.gson.version>2.9.1</com.google.code.gson.version>
-		<junit-platform-suite-engine.version>1.8.2</junit-platform-suite-engine.version>		
+		<junit-platform-suite-engine.version>1.8.2</junit-platform-suite-engine.version>
 		<allure.junit5.version>2.19.0</allure.junit5.version>
 		<allure-maven.version>2.11.2</allure-maven.version>
 		<maven-surefire-plugin.version>3.0.0-M7</maven-surefire-plugin.version>
@@ -31,11 +29,6 @@
 			<groupId>io.rest-assured</groupId>
 			<artifactId>rest-assured</artifactId>
 			<version>${rest-assured.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>io.rest-assured</groupId>
-			<artifactId>json-schema-validator</artifactId>
-			<version>${json-schema-validator.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
@@ -59,7 +52,7 @@
 			<artifactId>junit-platform-suite-engine</artifactId>
 			<version>${junit-platform-suite-engine.version}</version>
 			<scope>test</scope>
-		</dependency>		
+		</dependency>
 		<dependency>
 			<groupId>io.qameta.allure</groupId>
 			<artifactId>allure-junit5</artifactId>
@@ -75,7 +68,7 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>${maven-surefire-plugin.version}</version>
 				<configuration>
-					<testFailureIgnore>false</testFailureIgnore>					
+					<testFailureIgnore>false</testFailureIgnore>
 					<properties>
 						<property>
 							<name>listener</name>
@@ -105,21 +98,21 @@
 						<groupId>org.aspectj</groupId>
 						<artifactId>aspectjweaver</artifactId>
 						<version>${aspectj.version}</version>
-					</dependency>					
+					</dependency>
 					<dependency>
 						<groupId>org.junit.jupiter</groupId>
 						<artifactId>junit-jupiter-engine</artifactId>
 						<version>${junit.jupiter.engine.version}</version>
 					</dependency>
 				</dependencies>
-			</plugin>			
+			</plugin>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-compiler-plugin</artifactId>
 				<version>${maven-compiler-plugin.version}</version>
 				<configuration>
 					<source>${java.version}</source>
-					<target>${java.version}</target>					
+					<target>${java.version}</target>
 				</configuration>
 			</plugin>
 		</plugins>

@@ -1,6 +1,7 @@
 package br.qa.thinogueiras.utils;
 
 import static io.restassured.RestAssured.get;
+import static io.restassured.RestAssured.given;
 
 import br.qa.thinogueiras.core.Movement;
 
@@ -27,5 +28,13 @@ public class Utils {
 	
 	public static Integer getMovementIdByDescription(String description) {
 		return get("/transacoes?descricao="+description).then().extract().path("id[0]");
+	}
+	
+	public static void resetUserData() {
+		given()
+		.when()
+			.get("/reset")
+		.then()
+			.statusCode(200);		
 	}
 }
