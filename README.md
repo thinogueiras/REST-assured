@@ -1,5 +1,7 @@
 # Testes de API com REST-assured e JUnit 5.
 
+[![REST-assured Tests](https://github.com/thinogueiras/REST-assured/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/thinogueiras/REST-assured/actions/workflows/ci.yml)
+
 ## Pré-requisitos mínimos de ambiente:
 
 * [Java](https://www.oracle.com/br/java/technologies/downloads/#java11) 11.0.x.
@@ -28,7 +30,7 @@ git clone https://github.com/thinogueiras/REST-assured.git
 ### Terminal:
 
 ``` 
-mvn clean test
+mvn test
 ```
 
 ## Relatório:

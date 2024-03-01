@@ -81,7 +81,7 @@
 					<argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
                     </argLine>
-					<systemProperties>
+					<systemPropertyVariables>
 						<property>
 							<name>allure.results.directory</name>
 							<value>${project.basedir}/allure-results</value>
@@ -90,7 +90,7 @@
 							<name>junit.jupiter.extensions.autodetection.enabled</name>
 							<value>true</value>
 						</property>
-					</systemProperties>
+					</systemPropertyVariables>
 					<reportFormat>plain</reportFormat>
 				</configuration>
 				<dependencies>
