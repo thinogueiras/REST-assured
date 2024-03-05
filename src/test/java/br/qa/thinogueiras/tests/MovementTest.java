@@ -5,6 +5,7 @@ import static br.qa.thinogueiras.utils.Utils.getMovementIdByDescription;
 import static br.qa.thinogueiras.utils.Utils.getValidMovement;
 import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.aMapWithSize;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.hasSize;
 
@@ -26,7 +27,9 @@ public class MovementTest extends BaseTest {
 		.when()
 			.post("/transacoes")
 		.then()
-			.statusCode(201);
+			.statusCode(201)
+			.body("$", aMapWithSize(13))
+			.body("valor", is("5000.00"));
 	}
 	
 	@Test
@@ -50,7 +53,7 @@ public class MovementTest extends BaseTest {
 	}
 	
 	@Test
-	public void ShouldNotRegisterMovementWithFutureDate() {
+	public void shouldNotRegisterMovementWithFutureDate() {
 		Movement movement = getValidMovement();		
 		movement.setData_transacao("13/11/2027");
 		

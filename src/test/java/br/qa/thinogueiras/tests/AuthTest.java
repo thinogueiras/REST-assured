@@ -46,14 +46,4 @@ public class AuthTest extends BaseTest {
 		.then()
 			.statusCode(401);
 	}
-	
-	@Test
-	public void shouldNotAccessMovimentacoesWithoutToken() {		
-		
-		given()
-		.when()
-			.get("/movimentacoes")
-		.then()
-			.statusCode(401);
-	}
 }

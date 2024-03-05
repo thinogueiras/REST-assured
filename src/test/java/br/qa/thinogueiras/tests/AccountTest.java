@@ -27,7 +27,9 @@ public class AccountTest extends BaseTest {
 		.when()
 			.post("/contas")
 		.then()
-			.statusCode(201);
+			.statusCode(201)
+			.body("nome", is("Conta corrente"))
+			.body("visivel", is(true));
 	}
 	
 	@Test
